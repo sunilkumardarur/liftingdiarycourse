@@ -1,21 +1,25 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { parseISO, format } from "date-fns";
+import { Calendar } from "@/components/ui/calendar";
 
-export default function DatePicker({ value }: { value: string }) {
+export default function WorkoutCalendar({ value }: { value: string }) {
   const router = useRouter();
-  const pathname = usePathname();
+  const selected = parseISO(value);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    router.push(`${pathname}?date=${e.target.value}`);
+  function handleSelect(date: Date | undefined) {
+    if (!date) return;
+    router.push(`/dashboard?date=${format(date, "yyyy-MM-dd")}`);
   }
 
   return (
-    <input
-      type="date"
-      value={value}
-      onChange={handleChange}
-      className="border rounded px-3 py-1.5 text-sm"
+    <Calendar
+      mode="single"
+      selected={selected}
+      onSelect={handleSelect}
+      captionLayout="dropdown"
+      showOutsideDays={false}
     />
   );
 }

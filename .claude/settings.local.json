@@ -6,7 +6,10 @@
       "mcp__neon__get_database_tables",
       "mcp__neon__run_sql_transaction",
       "Bash(find C:Userssunilliftingdiarycourse -name .env* -type f)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(npx:*)",
+      "Bash(npm ls:*)",
+      "mcp__neon__run_sql"
     ]
   },
   "enableAllProjectMcpServers": true,
